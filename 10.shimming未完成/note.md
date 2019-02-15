@@ -1,11 +1,3 @@
-# webpack4-test
- 
- webpack4的例子测试
-
- 每个文件夹代表一个测试用例
-
- 以下为测试笔记
-
 ### 安装
 npm init -y    
 npm i webpack webpack-cli --save-dev
@@ -652,50 +644,5 @@ PS:需要删除
 }
 ```
 否则会报错
-
-
-### 渐进式网络应用程序
-使用一个简易服务器，搭建出我们所需的离线体验。
-npm install http-server --save-dev
-package.json
-`+    "start": "http-server dist"`
-
-添加 Workbox 
-npm install workbox-webpack-plugin --save-dev
-webpack.config.js
-```angularjs
-+ const WorkboxPlugin = require('workbox-webpack-plugin');
-plugins: [
-    new CleanWebpackPlugin(['dist']),
-    new HtmlWebpackPlugin({
--     title: 'Output Management'
-+     title: 'Progressive Web Application'
--   })
-+   }),
-+   new WorkboxPlugin.GenerateSW({
-+     // 这些选项帮助 ServiceWorkers 快速启用
-+     // 不允许遗留任何“旧的” ServiceWorkers
-+     clientsClaim: true,
-+     skipWaiting: true
-+   })
-  ],
-```
-
-npm run build生成了 2 个额外的文件：sw.js 和体积很大的 precache-manifest.b5ca1c555e832d6fbf9462efd29d27eb.js。
-
-
-注册我们的 Service Worker 
-index.js
-```angularjs
-+ if ('serviceWorker' in navigator) {
-+   window.addEventListener('load', () => {
-+     navigator.serviceWorker.register('/service-worker.js').then(registration => {
-+       console.log('SW registered: ', registration);
-+     }).catch(registrationError => {
-+       console.log('SW registration failed: ', registrationError);
-+     });
-+   });
-+ }
-```
 
 

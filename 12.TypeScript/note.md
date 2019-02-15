@@ -1,11 +1,3 @@
-# webpack4-test
- 
- webpack4的例子测试
-
- 每个文件夹代表一个测试用例
-
- 以下为测试笔记
-
 ### 安装
 npm init -y    
 npm i webpack webpack-cli --save-dev
